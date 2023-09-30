@@ -2,7 +2,8 @@ import pandas as pd
 
 df = pd.read_excel(r"D:\Users\Admin\Desktop\DistribuidoresARG2.xlsx")
 caracter = '.'
-def agregar_punto(numero):
+#Agrego puntos para separar los numeros de la latitud y longitud
+def agregar_punto(numero): 
     if pd.notnull(numero):
         numero = str(numero)
         return '{}{}{}'.format(numero[:3], '.', numero[3:])
@@ -11,6 +12,7 @@ def agregar_punto(numero):
 df['Latitud'] = df['Latitud'].apply(agregar_punto)
 df['Longitud'] = df['Longitud'].apply(agregar_punto)
 
+#Elimino el anteultimo caracter, que en el csv aparecía automaticamente.
 def eliminar_penultimo_caracter(numero):
     if pd.notnull(numero):
         numero = str(numero)
@@ -20,5 +22,3 @@ def eliminar_penultimo_caracter(numero):
 
 df['Latitud'] = df['Latitud'].apply(eliminar_penultimo_caracter)
 df['Longitud'] = df['Longitud'].apply(eliminar_penultimo_caracter)
-
-#df.to_csv(r'D:\Users\Admin\Downloads\bd\FINAL.csv', encoding='latin-1', sep=';')
